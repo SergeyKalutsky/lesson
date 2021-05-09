@@ -16,8 +16,19 @@ class Player(pygame.sprite.Sprite):
         # Создаем группу препятствий для игрока:
         self.platforms = pygame.sprite.Group()
 
+    def calc_grav(self):
+        if self.change_y == 0:
+            self.change_y = 1
+        else:
+            self.change_y += 0.35
+            
+        if self.rect.y >= WIN_HEIGHT - self.rect.height and self.change_y >= 0:
+            self.change_y = 0
+            self.rect.y = WIN_HEIGHT - self.rect.height
+
     def update(self):
         # Движение вправо - влево
+        self.calc_grav()
         self.rect.x += self.change_x
         # Проверим, что объект не врезается в стену:
         block_hit_list = pygame.sprite.spritecollide(self, self.platforms, False)
