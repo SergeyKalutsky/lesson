@@ -1,5 +1,5 @@
 import pygame
-from constants import WIN_HEIGHT
+from constants import WIN_HEIGHT, BLUE
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, img='chick.png'):
@@ -57,7 +57,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.y -= 2
         
         if len(platform_hit_list) > 0 or self.rect.bottom >= WIN_HEIGHT:
-            self.change_y = -10
+            self.change_y = -11
         
     def go_left(self):
         self.change_x = -6
@@ -67,3 +67,18 @@ class Player(pygame.sprite.Sprite):
         
     def stop(self):
         self.change_x = 0
+
+
+class Platform(pygame.sprite.Sprite):
+# Препятствия, по которым моежт перемещаться персонаж, но не сквозь них
+
+    def __init__(self, x, y, width, height, color=BLUE):
+        super().__init__()
+        # Создаем прямоугольник заданных параметров
+        self.image = pygame.Surface([width, height])
+        self.image.fill(color)
+
+        # Помещаем прямоугольник в заданне место на экране
+        self.rect = self.image.get_rect()
+        self.rect.y = y
+        self.rect.x = x

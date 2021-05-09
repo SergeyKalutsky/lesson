@@ -17,9 +17,28 @@ class Game:
         # Создаем спрайт игрока
         self.player = game_object.Player(50, WIN_HEIGHT - 50)
         self.all_sprite_list.add(self.player)
+        self.platform_list = pygame.sprite.Group()
+        self.create_walls()
+        self.player.platforms = self.platform_list
         self.clock = pygame.time.Clock()
         # Задаем текущие состоятния игры ("START", "GAME", "PAUSE" или "FINISH")
         self.state = "GAME"
+        
+
+    def create_walls(self):
+       # Создаем стены и платформы
+       platform_coords = [
+           [0, 0, 10, 600],
+            [790, 0, 10, 600],
+            [0, 590, 600, 10],
+            [450, 500, 20, 100],
+            [250, 550, 20, 60],
+            [550, 450, 250, 10]
+       ]
+       for coord in platform_coords:
+           platform = game_object.Platform(coord[0], coord[1], coord[2], coord[3])
+           self.platform_list.add(platform)
+           self.all_sprite_list.add(platform)
 
     def handle_state(self, event):
         # обрабатываем сцену Идет Игра
