@@ -19,7 +19,7 @@ class Player(pygame.sprite.Sprite):
         # Движение вправо - влево
         self.rect.x += self.change_x
         # Проверим, что объект не врезается в стену:
-        block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
+        block_hit_list = pygame.sprite.spritecollide(self, self.platforms, False)
         for block in block_hit_list:
             # Если игрок двигался вправо, вернем его правую границу к левой границе препятствия:
             if self.change_x > 0:
@@ -31,7 +31,7 @@ class Player(pygame.sprite.Sprite):
         # Движение вверх - вниз
         self.rect.y += self.change_y
         # Проверим, что объект не врезается в стену:
-        block_hit_list = pygame.sprite.spritecollide(self, self.walls, False)
+        block_hit_list = pygame.sprite.spritecollide(self, self.platforms, False)
         for block in block_hit_list:
             # Вернем игрока за границу препятствия, в которое он врезался:
             if self.change_y > 0:

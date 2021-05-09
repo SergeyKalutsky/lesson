@@ -67,7 +67,7 @@ class Game:
                 if event.type == pygame.QUIT:
                     done = True
                 # Обрабатываем события для разных состояний игры:
-                self.handle_scene(event)
+                self.handle_state(event)
             # Если идет игра, обновляем положение всех спрайтов в игре:
             if self.state == "GAME":
                 self.all_sprite_list.update()
