@@ -20,6 +20,9 @@ class Game:
         self.platform_list = pygame.sprite.Group()
         self.create_walls()
         self.player.platforms = self.platform_list
+        self.artifact_list = pygame.sprite.Group()
+        self.create_artifacts()
+        self.player.artifacts = self.artifact_list
         self.clock = pygame.time.Clock()
         # Задаем текущие состоятния игры ("START", "GAME", "PAUSE" или "FINISH")
         self.state = "GAME"
@@ -39,6 +42,17 @@ class Game:
            platform = game_object.Platform(coord[0], coord[1], coord[2], coord[3])
            self.platform_list.add(platform)
            self.all_sprite_list.add(platform)
+
+    def create_artifacts(self):
+       # Создаем стены и платформы
+       artifact_coords = [
+           [0, 0],
+       ]
+       for coord in artifact_coords:
+           artifact = game_object.Artifact(coord[0], coord[1])
+           self.platform_list.add(artifact)
+           self.all_sprite_list.add(artifact)
+
 
     def handle_state(self, event):
         # обрабатываем сцену Идет Игра

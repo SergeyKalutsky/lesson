@@ -15,6 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.change_y = 0
         # Создаем группу препятствий для игрока:
         self.platforms = pygame.sprite.Group()
+        self.artifacts = pygame.sprite.Group()
 
     def calc_grav(self):
         if self.change_y == 0:
@@ -79,6 +80,15 @@ class Platform(pygame.sprite.Sprite):
         self.image.fill(color)
 
         # Помещаем прямоугольник в заданне место на экране
+        self.rect = self.image.get_rect()
+        self.rect.y = y
+        self.rect.x = x
+        
+
+class Artifact(pygame.sprite.Sprite):
+    def __init__(self, x, y, img='coin.png'):
+        super().__init__()
+        self.image = pygame.image.load(img).convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.y = y
         self.rect.x = x
