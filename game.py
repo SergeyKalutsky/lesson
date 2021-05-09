@@ -30,7 +30,7 @@ class Game:
                     self.player.go_left()
                 elif event.key == pygame.K_RIGHT:
                     self.player.go_right()
-                elif event.key == pygame.K_UP:
+                elif event.key == pygame.K_SPACE:
                     self.player.jump()
 
             elif event.type == pygame.KEYUP:
