@@ -40,7 +40,7 @@ class Game:
        ]
        for coord in platform_coords:
            platform = game_object.Platform(coord[0], coord[1], coord[2], coord[3])
-           self.platform_list.add(platform)
+           self.artifact_list.add(platform)
            self.all_sprite_list.add(platform)
 
     def create_artifacts(self):
