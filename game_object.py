@@ -1,4 +1,5 @@
 import pygame
+from constants import WIN_HEIGHT
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, img='chick.png'):
@@ -38,3 +39,20 @@ class Player(pygame.sprite.Sprite):
                 self.rect.bottom = block.rect.top
             else:
                 self.rect.top = block.rect.bottom
+                
+    def jump(self):
+        self.rect.y += 2
+        platform_hit_list = pygame.sprite.spritecollide(self, self.platforms, False)
+        self.rect.y -= 2
+        
+        if len(platform_hit_list) > 0 or self.rect.bottom >= WIN_HEIGHT:
+            self.change_y = -10
+        
+    def go_left(self):
+        self.change_x = -6
+        
+    def go_right(self):
+        self.change_x = 6
+        
+    def stop(self):
+        self.change_x = 0
